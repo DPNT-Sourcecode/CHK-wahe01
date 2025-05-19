@@ -5,8 +5,11 @@ import io.accelerate.runner.SolutionNotImplementedException;
 @SuppressWarnings("unused")
 public class SumSolution {
 
-    public int compute(int x, int y) {
-        throw new SolutionNotImplementedException();
+    public int compute(int x, int y)
+    {
+        int result;
+        result = x + y;
+        return result;
     }
-
 }
+

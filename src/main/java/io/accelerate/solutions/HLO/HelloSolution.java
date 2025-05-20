@@ -3,7 +3,7 @@ package io.accelerate.solutions.HLO;
 import io.accelerate.runner.SolutionNotImplementedException;
 
 public class HelloSolution {
-    private static final String defaultTo = "World"
+    private static final String defaultTo = "World";
     public String hello(String friendName) {
         String toWhom = isStrValid (friendName) ?  friendName.trim(): defaultTo;
         return "Hello " +  toWhom + "!";
@@ -18,5 +18,6 @@ public class HelloSolution {
         }
     }
 }
+
 
 

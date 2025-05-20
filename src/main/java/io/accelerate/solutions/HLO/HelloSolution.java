@@ -5,8 +5,9 @@ import io.accelerate.runner.SolutionNotImplementedException;
 public class HelloSolution {
     private static final String defaultTo = "World";
     public String hello(String friendName) {
-        String toWhom = isStrValid (friendName) ?  friendName.trim(): defaultTo;
-        return "Hello " +  toWhom + "!";
+        /*String toWhom = isStrValid (friendName) ?  friendName.trim(): defaultTo;
+        return "Hello " +  toWhom + "!";*/
+        return "Hello, World!";
     }
 
     private boolean isStrValid (String in){
@@ -18,6 +19,7 @@ public class HelloSolution {
         }
     }
 }
+
 
 
 

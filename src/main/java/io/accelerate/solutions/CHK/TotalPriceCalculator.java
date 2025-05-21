@@ -30,6 +30,7 @@ public class TotalPriceCalculator {
         Map<String, Integer> quantities = new HashMap<>(originalQuantities);
         int totalDiscount = 0;
 
+        //Apply best offers
         List<String> sortedSkus = new ArrayList<>(quantities.keySet());
         sortedSkus.sort(String::compareTo);
 
@@ -67,3 +68,4 @@ public class TotalPriceCalculator {
         return offer.apply(cloned, itemsRepo);
     }
 }
+

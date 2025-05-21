@@ -33,6 +33,22 @@ public class GroupOffer implements Offer {
         int totalDiscount = 0;
         int totalGroups = itemsInGroup.size() / groupSize;
 
+        for (int i = 0; i < totalGroups; i++) {
+            int groupStartIndex = i * groupSize;
+            int groupEndIndex = groupStartIndex + groupSize;
+            // Get the SKUs in this group and calculate their full price
+            List<String> groupItems = itemsInGroup.subList(groupStartIndex, groupEndIndex);
+            int fullGroupPrice = 0;
+            for (String sku : groupItems) {
+                fullGroupPrice += itemsRepo.getItem(sku).getUnitPrice();
+                // Mark 1 quantity of this SKU as used
+                quantities.put(sku, quantities.get(sku) - 1);
+            }
+
+            totalDiscount += (fullGroupPrice - groupPrice);
+
+        }
+
         
 
 
@@ -42,3 +58,4 @@ public class GroupOffer implements Offer {
 
 
 }
+

@@ -41,7 +41,7 @@ public class TotalPriceCalculator {
         }
 
 
-        // Apply Apply all "rewarding" offers  (cross-SKU or self-rewarding)
+        // Apply  cross-SKU or self-rewarding offers
         for (String sku : quantities.keySet()) {
             Item item = itemsRepo.getItem(sku);
             for (Offer offer : item.getOffers()) {
@@ -88,4 +88,5 @@ public class TotalPriceCalculator {
     }
  */
 }
+
 

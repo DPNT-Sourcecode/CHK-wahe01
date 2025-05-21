@@ -23,16 +23,15 @@ public class SelFreeItemOffer implements Offer {
             return 0;
         }
 
-        int applicableTimes = count / requiredQuantity;
-        int discountedUnits = applicableTimes * (requiredQuantity - chargedQuantity);
-
         int unitPrice = itemRepo.getItem(sku).getUnitPrice();
-        int discount = discountedUnits * unitPrice;
 
-        // Update quantity: we reduce total because free units are covered
-        quantities.put(sku, count - discountedUnits);
+        // Apply offer as many times as possible (every group of requiredQuantity)
+        int groups = count / requiredQuantity;
+        int totalChargedUnits = groups * chargedQuantity;
+        int normalCost = groups * requiredQuantity * unitPrice;
+        int offerCost = totalChargedUnits * unitPrice;
 
-        return discount;
+        return normalCost - offerCost; // this is the discount
     }
 
     @Override
@@ -40,5 +39,3 @@ public class SelFreeItemOffer implements Offer {
         return "Buy " + chargedQuantity + " get " + (requiredQuantity - chargedQuantity) + " free for " + sku;
     }
 }
-
-

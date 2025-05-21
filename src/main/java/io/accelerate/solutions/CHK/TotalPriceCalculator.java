@@ -30,11 +30,11 @@ public class TotalPriceCalculator {
         Map<String, Integer> quantities = new HashMap<>(originalQuantities);
         int totalDiscount = 0;
 
-        // Step 2: Apply FreeItemOffers across all SKUs first
+        // Step 2: Apply Apply all "rewarding" offers first (cross-SKU or self-rewarding)
         for (String sku : quantities.keySet()) {
             Item item = itemsRepo.getItem(sku);
             for (Offer offer : item.getOffers()) {
-                if (offer instanceof FreeItemOffer) {
+                if (offer instanceof FreeItemOffer || offer instanceof SelFreeItemOffer) {
                     totalDiscount += offer.apply(quantities, itemsRepo);
                 }
             }
@@ -77,3 +77,4 @@ public class TotalPriceCalculator {
     }
  */
 }
+

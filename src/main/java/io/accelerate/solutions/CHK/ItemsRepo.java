@@ -10,9 +10,14 @@ public class ItemsRepo {
                 new MultiPriceOffer("A", 5, 200),
                 new MultiPriceOffer("A", 3, 130)
         )));
-        itemMap.put("B", new Item("B", 30, new SpecialOffer(2, 45)));
-        itemMap.put("C", new Item("C", 20, null));
-        itemMap.put("D", new Item("D", 15, null));
+        itemMap.put("B", new Item("B", 30, List.of(
+                new MultiPriceOffer("B", 2, 45)
+        )));
+        itemMap.put("C", new Item("C", 20, Collections.emptyList()));
+        itemMap.put("D", new Item("D", 15, Collections.emptyList()));
+        itemMap.put("E", new Item("E", 40, List.of(
+                new FreeItemOffer("E", 2, "B", 1)
+        )));
     }
 
     public Item getItem (String sku){
@@ -23,3 +28,4 @@ public class ItemsRepo {
         return itemMap.containsKey(sku);
     }
 }
+

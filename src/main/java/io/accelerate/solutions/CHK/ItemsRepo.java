@@ -6,6 +6,9 @@ import java.util.Map;
 public class ItemsRepo {
     private final Map <String, Item> itemMap = new HashMap<>();
     public ItemsRepo () {
+
+        
+
         itemMap.put("A", new Item("A", 50, List.of(
                 new MultiPriceOffer("A", 5, 200),
                 new MultiPriceOffer("A", 3, 130)
@@ -69,3 +72,4 @@ public class ItemsRepo {
         return itemMap.containsKey(sku);
     }
 }
+

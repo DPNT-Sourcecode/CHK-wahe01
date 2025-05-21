@@ -31,6 +31,11 @@ public class GroupOffer implements Offer {
         });
 
         int totalDiscount = 0;
+        if (groupSize == 0){
+            System.out.println("Invalid group size as 0");
+            return 0;
+        }
+
         int totalGroups = itemsInGroup.size() / groupSize;
 
         for (int i = 0; i < totalGroups; i++) {
@@ -49,13 +54,15 @@ public class GroupOffer implements Offer {
 
         }
 
-        
-
-
-
+        return totalDiscount;
 
     }
 
+    @Override
+    public String toString() {
+        return "Buy " + groupSize + " of " + groupSkus + " for " + groupPrice;
+    }
 
 }
+
 

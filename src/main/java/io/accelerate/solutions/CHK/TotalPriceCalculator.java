@@ -45,8 +45,10 @@ public class TotalPriceCalculator {
                 return Integer.compare(discount2, discount1); // Descending
             });
 
-            
-
+            for (Offer offer : sortedOffers) {
+                int discount = offer.apply(quantities, itemsRepo);
+                totalDiscount += discount;
+            }
         }
 
         // Calculate full original price
@@ -65,6 +67,7 @@ public class TotalPriceCalculator {
         return offer.apply(cloned, itemsRepo);
     }
 }
+
 
 
 

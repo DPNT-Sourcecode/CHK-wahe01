@@ -15,40 +15,21 @@ public class TotalPriceCalculator {
             return -1;
         }
 
-        // Count occurrences of each SKU
-        Map<String, Integer> skuCount = new HashMap<>();
+        // Count original quantities
+        Map<String, Integer> originalQuantities = new HashMap<>();
         for (char c : skus.toCharArray()) {
             String sku = String.valueOf(c);
             if (!itemsRepo.isSkuValid(sku)) {
                 System.out.println("Unknown sku found!");
                 return -1; // Unknown SKU
             }
-            skuCount.put(sku, skuCount.getOrDefault(sku, 0) + 1);
+            originalQuantities.put(sku, originalQuantities.getOrDefault(sku, 0) + 1);
         }
 
-        // Compute total price
-        int total = 0;
-        for (Map.Entry<String, Integer> entry : skuCount.entrySet()) {
-            Item item = itemsRepo.getItem(entry.getKey());
-            int quantity = entry.getValue();
-            SpecialOffer offer = item.getSpecialOffer();
-
-            if (offer != null) {
-                int offerQty = offer.getQuantityRequired();
-                int offerPrice = offer.getOfferPrice();
-                if (offerQty == 0) {
-                    System.out.println("Invalid quantity (0) in special offer found!");
-                    return -1; // Unknown SKU
-                }
-                total += (quantity / offerQty) * offerPrice;
-                total += (quantity % offerQty) * item.getUnitPrice();
-            } else {
-                total += quantity * item.getUnitPrice();
-            }
-        }
-
-        return total;
+        // Clone for manipulation
+        
 
     }
 }
+
 

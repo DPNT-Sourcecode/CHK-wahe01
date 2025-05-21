@@ -18,6 +18,7 @@ public class ItemsRepo {
         itemMap.put("E", new Item("E", 40, List.of(
                 new FreeItemOffer("E", 2, "B", 1)
         )));
+        itemMap.put("F", new Item("F", 10, List.of(new SelFreeItemOffer("F", 3, 2))));
     }
 
     public Item getItem (String sku){
@@ -28,3 +29,4 @@ public class ItemsRepo {
         return itemMap.containsKey(sku);
     }
 }
+

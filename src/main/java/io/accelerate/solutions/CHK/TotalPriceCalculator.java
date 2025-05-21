@@ -27,9 +27,25 @@ public class TotalPriceCalculator {
         }
 
         // Clone for manipulation
-        
+        Map<String, Integer> quantities = new HashMap<>(originalQuantities);
+        int totalDiscount = 0;
+
+        List<String> sortedSkus = new ArrayList<>(quantities.keySet());
+        sortedSkus.sort(String::compareTo);
+
+        for (String sku : sortedSkus) {
+            Item item = itemsRepo.getItem(sku);
+            List<Offer> offers = item.getOffers();
+            offers.stream()
+                    .sorted(Comparator.comparingInt(o -> estimateDiscountValue(o, quantities, itemsRepo)).reversed())
+                    .forEach(offer -> totalDiscount += offer.apply(quantities, itemsRepo));
+
+        }
 
     }
+
+    
 }
+
 
 

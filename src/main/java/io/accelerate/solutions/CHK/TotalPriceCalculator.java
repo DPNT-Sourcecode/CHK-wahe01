@@ -38,17 +38,30 @@ public class TotalPriceCalculator {
             Item item = itemsRepo.getItem(sku);
             List<Offer> offers = item.getOffers();
 
-            // Sort offers by estimated value (highest discount first)
-            List<Offer> sortedOffers = new ArrayList<>(offers);
-            sortedOffers.sort((o1, o2) -> {
-                int discount1 = estimateDiscountValue(o1, quantities, itemsRepo);
-                int discount2 = estimateDiscountValue(o2, quantities, itemsRepo);
-                return Integer.compare(discount2, discount1); // Descending
-            });
+            // Separate MultiPriceOffers and other offers
+            List<MultiPriceOffer> multiOffers = new ArrayList<>();
+            List<Offer> otherOffers = new ArrayList<>();
 
-            for (Offer offer : sortedOffers) {
-                int discount = offer.apply(quantities, itemsRepo);
-                totalDiscount += discount;
+            for (Offer offer : offers) {
+                if (offer instanceof MultiPriceOffer) {
+                    multiOffers.add((MultiPriceOffer) offer);
+                } else {
+                    otherOffers.add(offer);
+                }
+            }
+
+            // Sort multi-offers by quantity descending (larger bundles first)
+            multiOffers.sort((o1, o2) ->
+                    Integer.compare(o2.getQuantityRequired(), o1.getQuantityRequired()));
+
+            // Apply multi-offers greedily
+            for (MultiPriceOffer offer : multiOffers) {
+                totalDiscount += offer.apply(quantities, itemsRepo);
+            }
+
+            // Apply other types of offers (e.g., free item offers)
+            for (Offer offer : otherOffers) {
+                totalDiscount += offer.apply(quantities, itemsRepo);
             }
         }
 
@@ -68,4 +81,5 @@ public class TotalPriceCalculator {
         return offer.apply(cloned, itemsRepo);
     }
 }
+
 

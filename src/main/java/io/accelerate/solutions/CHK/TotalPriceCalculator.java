@@ -26,7 +26,7 @@ public class TotalPriceCalculator {
             originalQuantities.put(sku, originalQuantities.getOrDefault(sku, 0) + 1);
         }
 
-        // Clone for manipulation
+        // Clone for manipulation during offer application
         Map<String, Integer> quantities = new HashMap<>(originalQuantities);
         int totalDiscount = 0;
 
@@ -36,9 +36,16 @@ public class TotalPriceCalculator {
         for (String sku : sortedSkus) {
             Item item = itemsRepo.getItem(sku);
             List<Offer> offers = item.getOffers();
-            offers.stream()
-                    .sorted(Comparator.comparingInt(o -> estimateDiscountValue(o, quantities, itemsRepo)).reversed())
-                    .forEach(offer -> totalDiscount += offer.apply(quantities, itemsRepo));
+
+            // Sort offers by estimated value (highest discount first)
+            List<Offer> sortedOffers = new ArrayList<>(offers);
+            sortedOffers.sort((o1, o2) -> {
+                int discount1 = estimateDiscountValue(o1, quantities, itemsRepo);
+                int discount2 = estimateDiscountValue(o2, quantities, itemsRepo);
+                return Integer.compare(discount2, discount1); // Descending
+            });
+
+            
 
         }
 
@@ -58,6 +65,7 @@ public class TotalPriceCalculator {
         return offer.apply(cloned, itemsRepo);
     }
 }
+
 
 
 

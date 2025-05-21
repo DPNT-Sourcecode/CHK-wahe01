@@ -6,8 +6,14 @@ public class MultiPriceOffer implements Offer {
     private final int quantityRequired;
     private final int offerPrice;
 
+    public MultiPriceOffer(String sku, int quantityRequired, int offerPrice) {
+        this.sku = sku;
+        this.quantityRequired = quantityRequired;
+        this.offerPrice = offerPrice;
+    }
+
     @Override
-    public int apply(Map<String, Integer> quantities, ItemRepository itemRepository) {
+    public int apply(Map<String, Integer> quantities, ItemsRepo itemsRepo) {
         if (!quantities.containsKey(sku)) return 0;
         int count = quantities.get(sku);
         if (count < quantityRequired) return 0;
@@ -16,14 +22,13 @@ public class MultiPriceOffer implements Offer {
             return 0;
         }
 
-        Item item = itemRepository.getItem(sku);
+        Item item = itemsRepo.getItem(sku);
         int unitPrice = item.getUnitPrice();
 
-
-
         int numOfOffers = count / quantityRequired;
-
+        int discount = numOfOffers * (quantityRequired * unitPrice - offerPrice);
 
     }
 }
+
 

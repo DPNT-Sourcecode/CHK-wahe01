@@ -8,6 +8,14 @@ public class TotalPriceCalculator {
         this.itemsRepo = itemsRepo;
     }
 
-    
+    public int calculateTotal (String skus) {
+        if (skus == null || !skus.matches("^[A-Z]*$")){
+            System.out.println("Invalid sku found!");
+            return -1;
+        }
+
+
+    }
 }
+
 

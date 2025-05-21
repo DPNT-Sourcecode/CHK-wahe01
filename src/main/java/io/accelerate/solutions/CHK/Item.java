@@ -4,4 +4,23 @@ public class Item {
     private String sku;
     private int unitPrice;
     private final SpecialOffer specialOffer;
+
+    public Item(String sku, int unitPrice, SpecialOffer specialOffer) {
+        this.sku = sku;
+        this.unitPrice = unitPrice;
+        this.specialOffer = specialOffer;
+    }
+
+    public String getSku(){
+        return sku;
+    }
+
+    public String getUnitPrice(){
+        return unitPrice;
+    }
+
+    public SpecialOffer getSpecialOffer(){
+        return specialOffer;
+    }
+
 }

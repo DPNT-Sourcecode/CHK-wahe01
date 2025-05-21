@@ -35,6 +35,3 @@ public class MultiPriceOffer implements Offer {
 
     }
 }
-
-
-

@@ -4,13 +4,11 @@ import java.util.List;
 public class Item {
     private final String sku;
     private final int unitPrice;
-    //private final SpecialOffer specialOffer;
     private final List<Offer> offers;
 
     public Item(String sku, int unitPrice, List<Offer> offers) {
         this.sku = sku;
         this.unitPrice = unitPrice;
-        //this.offers = specialOffer;
         this.offers = offers;
     }
 
@@ -22,10 +20,8 @@ public class Item {
         return unitPrice;
     }
 
-    public SpecialOffer getSpecialOffer(){
-        return specialOffer;
+    public List<Offer> getOffers(){
+        return offers;
     }
 
 }
-
-

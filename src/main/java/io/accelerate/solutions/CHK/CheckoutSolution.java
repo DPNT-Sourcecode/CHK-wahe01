@@ -14,5 +14,3 @@ public class CheckoutSolution {
         return totalPriceCalculator.calculateTotal(skus);
     }
 }
-
-

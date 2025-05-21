@@ -13,8 +13,8 @@ public class ItemsRepo {
         itemMap.put("B", new Item("B", 30, List.of(
                 new MultiPriceOffer("B", 2, 45)
         )));
-        itemMap.put("C", new Item("C", 20, Collections.emptyList()));
-        itemMap.put("D", new Item("D", 15, Collections.emptyList()));
+        itemMap.put("C", new Item("C", 20, List.of()));
+        itemMap.put("D", new Item("D", 15, List.of()));
         itemMap.put("E", new Item("E", 40, List.of(
                 new FreeItemOffer("E", 2, "B", 1)
         )));
@@ -47,8 +47,17 @@ public class ItemsRepo {
         )));
         itemMap.put("S", new Item("S", 30, List.of()));
         itemMap.put("T", new Item("T", 20, List.of()));
-        
-
+        itemMap.put("U", new Item("U", 40, List.of(
+                new SelFreeItemOffer("U", 4, 3) // 4U for price of 3
+        )));
+        itemMap.put("V", new Item("V", 50, List.of(
+                new MultiPriceOffer("V", 3, 130),
+                new MultiPriceOffer("V", 2, 90)
+        )));
+        itemMap.put("W", new Item("W", 20, List.of()));
+        itemMap.put("X", new Item("X", 90, List.of()));
+        itemMap.put("Y", new Item("Y", 10, List.of()));
+        itemMap.put("Z", new Item("Z", 50, List.of()));
 
     }
 
@@ -60,4 +69,5 @@ public class ItemsRepo {
         return itemMap.containsKey(sku);
     }
 }
+
 

@@ -45,8 +45,11 @@ public class TotalPriceCalculator {
         // Calculate full original price
         int fullPrice = 0;
         for (Map.Entry<String, Integer> entry : originalQuantities.entrySet()) {
-            
+            Item item = itemsRepo.getItem(entry.getKey());
+            fullPrice += entry.getValue() * item.getUnitPrice();
         }
+
+        return fullPrice - totalDiscount;
 
     }
 
@@ -55,6 +58,7 @@ public class TotalPriceCalculator {
         return offer.apply(cloned, itemsRepo);
     }
 }
+
 
 
 

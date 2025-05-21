@@ -67,10 +67,3 @@ public class TotalPriceCalculator {
         return offer.apply(cloned, itemsRepo);
     }
 }
-
-
-
-
-
-
-

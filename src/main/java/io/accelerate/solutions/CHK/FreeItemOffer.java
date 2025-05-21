@@ -16,8 +16,20 @@ public class FreeItemOffer implements Offer {
 
     @Override
     public int apply(Map<String, Integer> quantities, ItemsRepo itemsRepo) {
+        if (!quantities.containsKey(requiredSku)) return 0;
+        int qualifyingCount = quantities.get(requiredSku);
+        if (requiredQuantity == 0){
+            System.out.println("Invalid: requiredQuantity = 0");
+            return 0;
+        }
+        int applicableTimes = qualifyingCount / requiredQuantity;
+        if (applicableTimes == 0 || !quantities.containsKey(freeSku)) return 0;
+
+        int freeItems = Math.min(applicableTimes * freeQuantity, quantities.get(freeSku));
         
+
     }
 
 
 }
+

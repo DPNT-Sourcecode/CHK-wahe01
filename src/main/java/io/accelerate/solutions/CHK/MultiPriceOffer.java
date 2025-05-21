@@ -32,14 +32,19 @@ public class MultiPriceOffer implements Offer {
         quantities.put(sku, count - numOfOffers * quantityRequired);
 
         return discount;
-
-        public int getQuantityRequired() {
-            return quantityRequired;
-        }
-
-        
-
     }
+
+
+    public int getQuantityRequired() {
+        return quantityRequired;
+    }
+
+    public int getUnitSavings(ItemsRepo repo) {
+        int unitPrice = repo.getItem(sku).getUnitPrice();
+        return quantityRequired * unitPrice - offerPrice;
+    }
+
 }
+
 
 

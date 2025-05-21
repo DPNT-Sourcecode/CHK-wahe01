@@ -30,7 +30,17 @@ public class TotalPriceCalculator {
         Map<String, Integer> quantities = new HashMap<>(originalQuantities);
         int totalDiscount = 0;
 
-        //Apply best offers
+        // Step 2: Apply FreeItemOffers across all SKUs first
+        for (String sku : quantities.keySet()) {
+            Item item = itemsRepo.getItem(sku);
+            for (Offer offer : item.getOffers()) {
+                if (offer instanceof FreeItemOffer) {
+                    totalDiscount += offer.apply(quantities, itemsRepo);
+                }
+            }
+        }
+
+        //Apply best MultiPriceOffers (sorted by quantity desc)
         List<String> sortedSkus = new ArrayList<>(quantities.keySet());
         sortedSkus.sort(String::compareTo);
 
@@ -81,3 +91,4 @@ public class TotalPriceCalculator {
         return offer.apply(cloned, itemsRepo);
     }
 }
+

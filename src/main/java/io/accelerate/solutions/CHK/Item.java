@@ -1,8 +1,8 @@
 package io.accelerate.solutions.CHK;
 
 public class Item {
-    private String sku;
-    private int unitPrice;
+    private final String sku;
+    private final int unitPrice;
     private final SpecialOffer specialOffer;
 
     public Item(String sku, int unitPrice, SpecialOffer specialOffer) {
@@ -15,7 +15,7 @@ public class Item {
         return sku;
     }
 
-    public String getUnitPrice(){
+    public int getUnitPrice(){
         return unitPrice;
     }
 
@@ -24,3 +24,4 @@ public class Item {
     }
 
 }
+

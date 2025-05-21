@@ -5,7 +5,7 @@ import io.accelerate.runner.SolutionNotImplementedException;
 public class CheckoutSolution {
     private TotalPriceCalculator totalPriceCalculator;
 
-    public (CheckoutSolution() {
+    public CheckoutSolution() {
         ItemsRepo itemsRepo = new ItemsRepo();
         this.totalPriceCalculator = new TotalPriceCalculator(itemsRepo);
     }
@@ -14,4 +14,5 @@ public class CheckoutSolution {
         return totalPriceCalculator.calculateTotal(skus);
     }
 }
+
 

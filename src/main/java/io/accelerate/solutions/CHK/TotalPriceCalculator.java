@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TotalPriceCalculator {
-    private ItemsRepo itemsRepo;
+    private final ItemsRepo itemsRepo;
     public TotalPriceCalculator (ItemsRepo itemsRepo){
         this.itemsRepo = itemsRepo;
     }
@@ -50,5 +50,6 @@ public class TotalPriceCalculator {
 
     }
 }
+
 
 

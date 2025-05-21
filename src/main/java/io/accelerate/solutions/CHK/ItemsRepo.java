@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ItemsRepo {
-    private Map <String, Item> itemMap = new HashMap<>();
+    private final Map <String, Item> itemMap = new HashMap<>();
     public ItemsRepo () {
         itemMap.put("A", new Item("A", 50, new SpecialOffer(3, 130)));
         itemMap.put("B", new Item("B", 30, new SpecialOffer(2, 45)));
@@ -19,3 +19,4 @@ public class ItemsRepo {
         return itemMap.containsKey(sku);
     }
 }
+

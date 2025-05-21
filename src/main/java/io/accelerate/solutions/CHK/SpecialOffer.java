@@ -9,6 +9,13 @@ public class SpecialOffer {
         this.offerPrice = offerPrice;
     }
 
-    
+    public int getQuantityRequired(){
+        return quantityRequired;
+    }
+
+    public int getOfferPrice(){
+        return offerPrice;
+    }
 
 }
+

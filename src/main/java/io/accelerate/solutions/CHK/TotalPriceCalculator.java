@@ -28,13 +28,17 @@ public class TotalPriceCalculator {
         // Compute total price
         int total = 0;
         for (Map.Entry<String, Integer> entry : skuCount.entrySet()) {
-            Item item = itemRepository.getItem(entry.getKey());
+            Item item = itemsRepo.getItem(entry.getKey());
             int quantity = entry.getValue();
             SpecialOffer offer = item.getSpecialOffer();
 
             if (offer != null) {
                 int offerQty = offer.getQuantityRequired();
                 int offerPrice = offer.getOfferPrice();
+                if (offerQty == 0) {
+                    System.out.println("Invalid quantity (0) in special offer found!");
+                    return -1; // Unknown SKU
+                }
                 total += (quantity / offerQty) * offerPrice;
                 total += (quantity % offerQty) * item.getUnitPrice();
             } else {
@@ -43,7 +47,7 @@ public class TotalPriceCalculator {
         }
 
         return total;
-
-
+        
     }
 }
+

@@ -1,4 +1,5 @@
 package io.accelerate.solutions.CHK;
+import java.util.List;
 
 public class Item {
     private final String sku;
@@ -24,3 +25,4 @@ public class Item {
     }
 
 }
+

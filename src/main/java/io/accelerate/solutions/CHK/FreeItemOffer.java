@@ -26,10 +26,15 @@ public class FreeItemOffer implements Offer {
         if (applicableTimes == 0 || !quantities.containsKey(freeSku)) return 0;
 
         int freeItems = Math.min(applicableTimes * freeQuantity, quantities.get(freeSku));
-        
+        int discount = freeItems * itemsRepo.getItem(freeSku).getUnitPrice();
 
+        //placeholder, may not be required
+        quantities.put(freeSku, quantities.get(freeSku) - freeItems);
+
+        return discount;
     }
 
 
 }
+
 

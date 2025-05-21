@@ -6,7 +6,7 @@ public class SelFreeItemOffer implements Offer {
     private final int requiredQuantity; // Number required in basket
     private final int chargedQuantity; // Number to charge for
 
-    public SelfFreeItemOffer(String sku, int requiredQuantity, int chargedQuantity) {
+    public SelFreeItemOffer(String sku, int requiredQuantity, int chargedQuantity) {
         this.sku = sku;
         this.requiredQuantity = requiredQuantity;
         this.chargedQuantity = chargedQuantity;
@@ -40,4 +40,5 @@ public class SelFreeItemOffer implements Offer {
         return "Buy " + chargedQuantity + " get " + (requiredQuantity - chargedQuantity) + " free for " + sku;
     }
 }
+
 

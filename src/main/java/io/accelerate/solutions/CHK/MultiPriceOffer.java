@@ -33,6 +33,13 @@ public class MultiPriceOffer implements Offer {
 
         return discount;
 
+        public int getQuantityRequired() {
+            return quantityRequired;
+        }
+
+        
+
     }
 }
+
 

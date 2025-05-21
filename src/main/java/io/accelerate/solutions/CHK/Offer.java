@@ -3,6 +3,7 @@ import java.util.Map;
 
 public interface Offer {
     public interface Offer {
-        int apply (Map )
+        int apply (Map<String, Integer> quantities, ItemsRepo itemsRepo);
     }
 }
+

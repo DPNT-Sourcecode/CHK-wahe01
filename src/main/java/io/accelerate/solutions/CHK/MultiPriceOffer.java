@@ -17,7 +17,7 @@ public class MultiPriceOffer implements Offer {
         if (!quantities.containsKey(sku)) return 0;
         int count = quantities.get(sku);
         if (count < quantityRequired) return 0;
-        if (count < quantityRequired) {
+        if (count == quantityRequired) {
             System.out.println("Invalid: quantityRequired = 0");
             return 0;
         }
@@ -28,7 +28,13 @@ public class MultiPriceOffer implements Offer {
         int numOfOffers = count / quantityRequired;
         int discount = numOfOffers * (quantityRequired * unitPrice - offerPrice);
 
+        // Update quantity after applying this offer, maybe required
+        quantities.put(sku, count - numOfOffers * quantityRequired);
+
+        return discount;
+
     }
 }
+
 
 

@@ -42,10 +42,20 @@ public class TotalPriceCalculator {
 
         }
 
+        // Calculate full original price
+        int fullPrice = 0;
+        for (Map.Entry<String, Integer> entry : originalQuantities.entrySet()) {
+            
+        }
+
     }
 
-    
+    private int estimateDiscountValue(Offer offer, Map<String, Integer> quantities, ItemsRepo itemsRepo) {
+        Map<String, Integer> cloned = new HashMap<>(quantities);
+        return offer.apply(cloned, itemsRepo);
+    }
 }
+
 
 
 
